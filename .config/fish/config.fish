@@ -41,6 +41,11 @@ if status is-interactive
     # OPAM config
     test -r '/home/cem/.opam/opam-init/init.fish' && source '/home/cem/.opam/opam-init/init.fish' > /dev/null 2> /dev/null; or true
 
+    function change_timezone
+        set zone $argv[1]
+        sudo timedatectl set-timezone $zone && echo -e "Time zone has been changed to \"$zone\"."
+    end
+
     function y
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"
